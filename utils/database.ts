@@ -18,16 +18,18 @@ export const saveFile = async (file: File, data: data) => {
 
 	const response = await upload(file);
 
+	console.log(response);
+
 	if (!response.status) {
 		throw new Error((response as any).error.message);
 	}
 
-	await (fileSchema as any).insertMany([
-		{
-			id: (response as any).data.metadata.id as string,
-			name: data.name,
-			path: data.path || "/",
-			userId: data.id,
-		},
-	]);
+	// await (fileSchema as any).insertMany([
+	// 	{
+	// 		id: (response as any).data.metadata.id as string,
+	// 		name: data.name,
+	// 		path: data.path || "/",
+	// 		userId: data.id,
+	// 	},
+	// ]);
 };
