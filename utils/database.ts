@@ -1,11 +1,13 @@
+import fileSchema from "../models/file-schema";
 import { upload } from "./api";
 
 type data = {
 	id: string;
 	path?: string;
+	name: string;
 };
 
-export const save = async (file: File, data: data) => {
+export const saveFile = async (file: File, data: data) => {
 	if (!file) {
 		throw new Error("No file provided!");
 	}
@@ -20,5 +22,12 @@ export const save = async (file: File, data: data) => {
 		throw new Error((response as any).error.message);
 	}
 
-	// save to mongo
+	await (fileSchema as any).insertMany([
+		{
+			id: (response as any).data.metadata.id as string,
+			name: data.name,
+			path: data.path || "/",
+			userId: data.id,
+		},
+	]);
 };
