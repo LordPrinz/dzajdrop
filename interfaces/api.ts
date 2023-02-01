@@ -13,7 +13,7 @@ export type File = {
 	};
 };
 
-export type SuccessStatus = {
+export type Success = {
 	status: boolean;
 	data: {
 		file: File;
@@ -48,7 +48,7 @@ export type ErrorCode =
 	| 40
 	| 404;
 
-export type ErrorStatus = {
+export type Error = {
 	status: boolean;
 	error: {
 		message: string;
