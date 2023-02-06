@@ -1,30 +1,33 @@
 import { Error, Success } from "../interfaces/api";
 
-export const upload = async (
-	file: File
-): Promise<Success | Error | Response> => {
-	const endpoint = "https://api.anonfiles.com/upload";
+// export const upload = async (file: File): Promise<Success | Error> => {
+//   const endpoint = "https://api.anonfiles.com/upload";
 
-	const body = new FormData();
+//   const data = new FormData();
 
-	body.append("file", file);
+//   // console.log(file);
 
-	return (await (
-		await fetch(endpoint, {
-			method: "POST",
-			body,
-			headers: {
-				Accept: "application/json",
-				"Content-Type": "multipart/form-data",
-			},
-		})
-	).json()) as any;
-};
+//   data.append("file", file);
 
-export const getInfo = async (
-	id: string
-): Promise<Success | Error | Response> => {
-	const endpoint = `https://api.anonfiles.com/v2/file/${id}/info`;
+//   // console.log(data);
 
-	return (await (await fetch(endpoint)).json()) as any;
+//   const res = await fetch(endpoint, {
+//     method: "POST",
+//     body: data,
+//     headers: {
+//       "Content-Type": "multipart/form-data",
+//     },
+//   }).then((data) => data.json());
+
+//   console.log(data);
+
+//   return null;
+// };
+
+export const getInfo = async (id: string): Promise<Success | Error> => {
+  const endpoint = `https://api.anonfiles.com/v2/file/${id}/info`;
+
+  const res = await fetch(endpoint).then((data) => data.json());
+
+  return res;
 };

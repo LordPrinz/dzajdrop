@@ -1,24 +1,26 @@
-import { upload } from "./api";
+// import { upload } from "./api";
 
 type data = {
-	id: string;
-	path?: string;
+  id: string;
+  path?: string;
 };
 
-export const save = async (file: File, data: data) => {
-	if (!file) {
-		throw new Error("No file provided!");
-	}
+export const saveFile = async (file: File, data: data) => {
+  if (!file) {
+    throw new Error("No file provided!");
+  }
 
-	if (!data?.id) {
-		throw new Error("No id provided!");
-	}
+  if (!data?.id) {
+    throw new Error("No id provided!");
+  }
 
-	const response = await upload(file);
+  // const response = await upload(file);
 
-	if (!response.status) {
-		throw new Error((response as any).error.message);
-	}
+  // if (!response.status) {
+  // throw new Error((response as any).error.message);
+  // }
 
-	// save to mongo
+  // console.log(response);
+
+  // save to mongo
 };

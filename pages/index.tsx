@@ -1,7 +1,5 @@
+const IndexPage = () => {
+  return <div>bruh</div>;
+};
 
-import '../styles/index.css'
-const IndexPage = () => (
-<div>xd</div>
-)
-
-export default IndexPage
+export default IndexPage;
