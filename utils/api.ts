@@ -24,12 +24,10 @@ export const upload = async (
 	return response as any;
 };
 
-export const getInfo = async (id: string) => {
+export const getInfo = async (id: string | string[]) => {
 	const endpoint = `https://api.anonfiles.com/v2/file/${id}/info`;
-
-	const response = await fetch(endpoint);
-
-	console.log(response);
+	const response = await fetch(endpoint).then((data) => data.json());
+	return response;
 };
 
 // 	return (await (
