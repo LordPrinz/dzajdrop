@@ -1,33 +1,40 @@
 import { Error, Success } from "../interfaces/api";
 
-// export const upload = async (file: File): Promise<Success | Error> => {
-//   const endpoint = "https://api.anonfiles.com/upload";
+export const upload = async (
+	file: File
+): Promise<Success | Error | Response> => {
+	const endpoint = "https://api.anonfiles.com/upload";
 
-//   const data = new FormData();
+	const body = new FormData();
 
-//   // console.log(file);
+	body.append("file", file, file.name);
 
-//   data.append("file", file);
+	const response = await fetch(endpoint, {
+		method: "POST",
+		body,
+		mode: "no-cors",
+		headers: {
+			"Content-Type": "multipart/form-data",
+		},
+		redirect: "follow",
+	});
 
-//   // console.log(data);
+	console.log(response);
 
-//   const res = await fetch(endpoint, {
-//     method: "POST",
-//     body: data,
-//     headers: {
-//       "Content-Type": "multipart/form-data",
-//     },
-//   }).then((data) => data.json());
-
-//   console.log(data);
-
-//   return null;
-// };
-
-export const getInfo = async (id: string): Promise<Success | Error> => {
-  const endpoint = `https://api.anonfiles.com/v2/file/${id}/info`;
-
-  const res = await fetch(endpoint).then((data) => data.json());
-
-  return res;
+	return response as any;
 };
+
+export const getInfo = async (id: string) => {
+	const endpoint = `https://api.anonfiles.com/v2/file/${id}/info`;
+
+	const response = await fetch(endpoint);
+
+	console.log(response);
+};
+
+// 	return (await (
+// 		await fetch(endpoint, {
+// 			mode: "no-cors",
+// 		})
+// 	).json()) as any;
+// };
