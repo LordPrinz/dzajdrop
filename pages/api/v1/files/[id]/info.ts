@@ -13,7 +13,11 @@ export default async function handler(
 ) {
 	if (req.method === "GET") {
 		const { id } = req.query;
-		getInfo(id);
+		const info = await getInfo(id);
+
+		if (info.status === 404) {
+			res.status(404).send("Not Found");
+		}
 	}
 
 	return res.status(404).send("Not Found");
