@@ -7,14 +7,19 @@ function DragDrop() {
 		setFile((files) => [...files, file]);
 	};
 
-	console.log(file);
 	return (
 		<FileUploader
-			className="upload-input"
+			label="Drop your file here, or browse"
 			handleChange={handleChange}
 			name="file"
 			maxSize={20480}
-		/>
+		>
+			<div className="upload-input">
+				<p>
+					Drop your file here, or <span className="text-main-blue">browse</span>
+				</p>
+			</div>
+		</FileUploader>
 	);
 }
 

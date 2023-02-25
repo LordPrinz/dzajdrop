@@ -7,12 +7,14 @@ module.exports = {
 
 	theme: {
 		colors: {
-			"lighter-blue": "#DAEFD",
-			"light-blue": "#AFCBEC",
-			grey: "#91A0B5",
-			blue: "#1056FF",
-			"darker-blue": "#304D73",
-			"dark-blue": "#6394DA",
+			main: {
+				lighterBlue: "#DAEAFD",
+				lightBlue: "#AFCBEC",
+				grey: "#91A0B5",
+				blue: "#1056FF",
+				darkerBlue: "#304D73",
+				darkBlue: "#6394DA",
+			},
 		},
 
 		screens: {
