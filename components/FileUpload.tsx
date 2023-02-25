@@ -3,13 +3,8 @@ import React, { useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
 import uploadIcon from "./../public/upload-file.png";
 
-function DragDrop() {
-	const [files, setFiles] = useState([]);
+export default ({ addFile }) => {
 	const [isDragging, setIsDragging] = useState(false);
-
-	const handleChange = (file) => {
-		setFiles((files) => [...files, ...file]);
-	};
 
 	const dragChangeHandler = (isDragging) => {
 		setIsDragging(isDragging);
@@ -18,7 +13,7 @@ function DragDrop() {
 	return (
 		<FileUploader
 			label="Drop your file here, or browse"
-			handleChange={handleChange}
+			handleChange={addFile}
 			name="file"
 			maxSize={20480}
 			hoverTitle={" "}
@@ -50,6 +45,4 @@ function DragDrop() {
 			</div>
 		</FileUploader>
 	);
-}
-
-export default DragDrop;
+};
