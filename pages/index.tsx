@@ -9,7 +9,9 @@ const IndexPage = () => {
 		setFiles((files) => [...files, ...file]);
 	};
 
-	const removeFile = () => {};
+	const removeFile = (id) => {
+		console.log(id);
+	};
 
 	return (
 		<>
