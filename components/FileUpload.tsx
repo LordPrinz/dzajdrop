@@ -1,5 +1,7 @@
+import Image from "next/image";
 import React, { useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
+import uploadIcon from "./../public/upload-file.png";
 
 function DragDrop() {
 	const [file, setFile] = useState([]);
@@ -15,6 +17,9 @@ function DragDrop() {
 			maxSize={20480}
 		>
 			<div className="upload-input">
+				<div className="upload__icon-container">
+					<Image className="upload__icon" src={uploadIcon} alt="Folders icon" />
+				</div>
 				<p>
 					Drop your file here, or <span className="text-main-blue">browse</span>
 				</p>

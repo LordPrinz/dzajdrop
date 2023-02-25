@@ -22,9 +22,17 @@ body {
 }
 
 .upload-input {
-    @apply p-10 px-32 border-dashed border-2 rounded-3xl border-main-grey text-main-darkerBlue font-bold w-full;
+    @apply p-10 px-32 border-dashed border-2 rounded-3xl border-main-grey text-main-darkerBlue font-bold w-full flex flex-col justify-center items-center;
 }
 
 .upload-container {
     @apply p-7 bg-[#f8f8f8] inline-flex -translate-y-14 rounded-3xl shadow-md shadow-main-grey;
+}
+
+.upload__icon {
+    @apply w-full
+}
+
+.upload__icon-container {
+    @apply w-28 mb-6;
 }
