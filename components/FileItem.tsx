@@ -1,3 +1,3 @@
 export default () => {
-	return <li>s</li>;
+	return <li className="file">s</li>;
 };

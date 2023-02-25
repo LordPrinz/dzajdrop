@@ -40,3 +40,7 @@ body {
 .file-uploader-cleaner {
     @apply !border-none
 }
+
+.file {
+    @apply p-10
+}
