@@ -4,9 +4,15 @@ import { FileUploader } from "react-drag-drop-files";
 import uploadIcon from "./../public/upload-file.png";
 
 function DragDrop() {
-	const [file, setFile] = useState([]);
+	const [files, setFiles] = useState([]);
+	const [isDragging, setIsDragging] = useState(false);
+
 	const handleChange = (file) => {
-		setFile((files) => [...files, file]);
+		setFiles((files) => [...files, ...file]);
+	};
+
+	const dragChangeHandler = (isDragging) => {
+		setIsDragging(isDragging);
 	};
 
 	return (
@@ -15,9 +21,27 @@ function DragDrop() {
 			handleChange={handleChange}
 			name="file"
 			maxSize={20480}
+			hoverTitle={" "}
+			multiple={true}
+			dropMessageStyle={{
+				backgroundColor: "transparent",
+				border: 0,
+			}}
+			classes="file-uploader-cleaner"
+			onDraggingStateChange={dragChangeHandler}
 		>
-			<div className="upload-input">
-				<div className="upload__icon-container">
+			<div
+				className={`upload-input ${
+					isDragging
+						? "bg-main-lighterBlue !border-main-darkBlue transition"
+						: ""
+				}`}
+			>
+				<div
+					className={`upload__icon-container ${
+						isDragging ? "-translate-y-1.5 transition" : ""
+					}`}
+				>
 					<Image className="upload__icon" src={uploadIcon} alt="Folders icon" />
 				</div>
 				<p>

@@ -22,11 +22,11 @@ body {
 }
 
 .upload-input {
-    @apply p-10 px-32 border-dashed border-2 rounded-3xl border-main-grey text-main-darkerBlue font-bold w-full flex flex-col justify-center items-center;
+    @apply p-10 transition px-36 border-dashed border-2 rounded-2xl border-main-grey text-main-darkerBlue font-bold w-full flex flex-col justify-center items-center cursor-pointer;
 }
 
 .upload-container {
-    @apply p-7 bg-[#f8f8f8] inline-flex -translate-y-14 rounded-3xl shadow-md shadow-main-grey;
+    @apply p-8 bg-[#f8f8f8] inline-flex -translate-y-14 rounded-3xl shadow-md shadow-main-grey select-none;
 }
 
 .upload__icon {
@@ -34,5 +34,9 @@ body {
 }
 
 .upload__icon-container {
-    @apply w-28 mb-6;
+    @apply w-28 mb-6 transition;
+}
+
+.file-uploader-cleaner {
+    @apply !border-none
 }
