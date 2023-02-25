@@ -18,3 +18,11 @@ body {
     display: flex;
     flex-direction: column;
 }
+
+.upload-input {
+    @apply p-3;
+}
+
+.upload-container {
+    @apply p-3;
+}
