@@ -42,5 +42,5 @@ body {
 }
 
 .file {
-    @apply p-5 text-main-darkerBlue border-[#eaeaea] border rounded-xl font-bold mt-2.5 overflow-hidden relative
+    @apply p-5 py-3 text-main-darkerBlue border-[#eaeaea] border rounded-xl font-bold mt-2.5 overflow-hidden relative
 }

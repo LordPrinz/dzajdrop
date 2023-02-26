@@ -6,7 +6,7 @@ import ProgressItem from "./Progress";
 export default () => {
 	const [isFinished, setIsFinished] = useState(false);
 	const [hasError, setHasError] = useState(false);
-	const [progress, setProgress] = useState(0);
+	const [progress, setProgress] = useState(100);
 
 	if (!isFinished) {
 		if (hasError) {
