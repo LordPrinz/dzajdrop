@@ -2,18 +2,18 @@ import { useEffect, useState } from "react";
 
 export default ({ progress }) => {
 	const [isEndAnimation, setIsEndAnimation] = useState(false);
-
+	const [text, setText] = useState("Uploading...");
 	useEffect(() => {
 		if (progress === 100) {
 			setTimeout(() => {
 				setIsEndAnimation(true);
 			}, 50);
+
+			setTimeout(() => {
+				setText("Completed");
+			}, 460);
 		}
 	}, [progress]);
-
-	if (isEndAnimation) {
-		console.log("XD");
-	}
 
 	return (
 		<li className="file">
@@ -25,8 +25,26 @@ export default ({ progress }) => {
 			></div>
 			<div className="flex justify-between items-center relative overflow-hidden pb-3">
 				<div>
-					<div className="text-sm mb-1 font-bold">Uploading...</div>
-					<div className="text-xs font-normal text-main-grey">
+					<div
+						className="text-sm mb-1 font-bold"
+						style={{
+							transform: `translateY(${isEndAnimation ? 17 : 0}px)`,
+							transitionDuration: "0.3s",
+							transitionDelay: "0.4s",
+							fontSize: isEndAnimation ? "16px" : "",
+						}}
+					>
+						{text}
+					</div>
+					<div
+						className="text-xs font-normal text-main-grey"
+						style={{
+							transform: `translateY(${isEndAnimation ? 10 : 0}px)`,
+							opacity: `${isEndAnimation ? 0 : 1}`,
+							transitionDuration: "0.3s",
+							transitionDelay: "0.4s",
+						}}
+					>
 						{progress}% &#183; 10 seconds left
 					</div>
 				</div>
