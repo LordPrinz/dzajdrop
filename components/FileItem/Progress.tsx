@@ -1,9 +1,10 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { IoCloseSharp, IoPause } from "react-icons/io5";
+import SuccessIcon from "./SuccessIcon";
 export default ({ progress }) => {
 	const [isEndAnimation, setIsEndAnimation] = useState(false);
 	const [text, setText] = useState("Uploading...");
-
+	const [icon, setIcon] = useState(null);
 	const fadeOutStyle = {
 		transform: `translateY(${isEndAnimation ? 10 : 0}px)`,
 		opacity: `${isEndAnimation ? 0 : 1}`,
@@ -19,6 +20,7 @@ export default ({ progress }) => {
 
 			setTimeout(() => {
 				setText("Completed");
+				setIcon(<SuccessIcon />);
 			}, 460);
 		}
 	}, [progress]);
@@ -64,6 +66,7 @@ export default ({ progress }) => {
 					>
 						<IoCloseSharp />
 					</div>
+					{icon}
 				</div>
 				<div
 					className="absolute bg-main-blue w-full bottom-1 -left-[110%] h-0.5 transition"
