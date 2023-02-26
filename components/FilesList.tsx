@@ -1,4 +1,4 @@
-import FileItem from "./FileItem";
+import FileItem from "./FileItem/index";
 
 export default ({ files, removeFiles }) => {
 	const filesList = (
