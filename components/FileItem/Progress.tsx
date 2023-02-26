@@ -1,4 +1,20 @@
+import { useEffect, useState } from "react";
+
 export default ({ progress }) => {
+	const [isEndAnimation, setIsEndAnimation] = useState(false);
+
+	useEffect(() => {
+		if (progress === 100) {
+			setTimeout(() => {
+				setIsEndAnimation(true);
+			}, 50);
+		}
+	}, [progress]);
+
+	if (isEndAnimation) {
+		console.log("XD");
+	}
+
 	return (
 		<li className="file">
 			<div
@@ -16,9 +32,16 @@ export default ({ progress }) => {
 				</div>
 				<div>PAUSE</div>
 				<div
-					className="absolute bg-main-blue w-full bottom-1 -left-full h-0.5"
+					className="absolute bg-main-blue w-full bottom-1 -left-[110%] h-0.5 transition"
 					style={{
-						transform: `translateX(${progress}%)`,
+						transform: `translateX(${
+							isEndAnimation
+								? "210"
+								: progress < 30
+								? progress * 1.1
+								: progress * 1.1
+						}%)`,
+						transitionDuration: "0.4s",
 					}}
 				></div>
 			</div>
