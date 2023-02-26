@@ -8,6 +8,14 @@ export default () => {
 	const [hasError, setHasError] = useState(false);
 	const [progress, setProgress] = useState(100);
 
+	// useEffect(() => {
+	// 	const interval = setInterval(() => {
+	// 		if (progress < 100) {
+	// 			setProgress((progress) => progress + 1);
+	// 		}
+	// 	}, 100);
+	// }, []);
+
 	if (!isFinished) {
 		if (hasError) {
 			return <ErrorItem />;

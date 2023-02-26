@@ -1,8 +1,16 @@
-import { useEffect, useState } from "react";
-
+import { useEffect, useMemo, useState } from "react";
+import { IoCloseSharp, IoPause } from "react-icons/io5";
 export default ({ progress }) => {
 	const [isEndAnimation, setIsEndAnimation] = useState(false);
 	const [text, setText] = useState("Uploading...");
+
+	const fadeOutStyle = {
+		transform: `translateY(${isEndAnimation ? 10 : 0}px)`,
+		opacity: `${isEndAnimation ? 0 : 1}`,
+		transitionDuration: "0.3s",
+		transitionDelay: "0.4s",
+	};
+
 	useEffect(() => {
 		if (progress === 100) {
 			setTimeout(() => {
@@ -38,17 +46,25 @@ export default ({ progress }) => {
 					</div>
 					<div
 						className="text-xs font-normal text-main-grey"
-						style={{
-							transform: `translateY(${isEndAnimation ? 10 : 0}px)`,
-							opacity: `${isEndAnimation ? 0 : 1}`,
-							transitionDuration: "0.3s",
-							transitionDelay: "0.4s",
-						}}
+						style={fadeOutStyle}
 					>
-						{progress}% &#183; 10 seconds left
+						{progress}% &#183; 4 seconds left
 					</div>
 				</div>
-				<div>PAUSE</div>
+				<div className="flex items-center gap-3">
+					<div
+						className="bg-[#eaeff5] rounded-full p-2 text-[#869aaf]"
+						style={fadeOutStyle}
+					>
+						<IoPause />
+					</div>
+					<div
+						className="bg-[#f8e4ea] rounded-full p-2 text-[#fd274a] "
+						style={fadeOutStyle}
+					>
+						<IoCloseSharp />
+					</div>
+				</div>
 				<div
 					className="absolute bg-main-blue w-full bottom-1 -left-[110%] h-0.5 transition"
 					style={{

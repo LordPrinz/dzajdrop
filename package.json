@@ -13,7 +13,8 @@
     "next": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-drag-drop-files": "^2.3.8"
+    "react-drag-drop-files": "^2.3.8",
+    "react-icons": "^4.7.1"
   },
   "devDependencies": {
     "@types/node": "^12.12.21",
