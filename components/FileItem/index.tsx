@@ -6,15 +6,13 @@ import ProgressItem from "./Progress";
 export default () => {
 	const [isFinished, setIsFinished] = useState(false);
 	const [hasError, setHasError] = useState(false);
-	const [progress, setProgress] = useState(100);
+	const [progress, setProgress] = useState(0);
 
-	// useEffect(() => {
-	// 	const interval = setInterval(() => {
-	// 		if (progress < 100) {
-	// 			setProgress((progress) => progress + 1);
-	// 		}
-	// 	}, 100);
-	// }, []);
+	useEffect(() => {
+		setInterval(() => {
+			setProgress((val) => val + 1);
+		}, 50);
+	}, []);
 
 	if (!isFinished) {
 		if (hasError) {
