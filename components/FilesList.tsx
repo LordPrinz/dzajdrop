@@ -4,7 +4,7 @@ export default ({ files, removeFiles }) => {
 	const filesList = (
 		<ul className="list-none">
 			{files.map((file, index) => (
-				<FileItem key={index} />
+				<FileItem key={index} file={file} />
 			))}
 		</ul>
 	);

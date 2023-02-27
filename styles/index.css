@@ -44,3 +44,7 @@ body {
 .file {
     @apply p-5 py-3 text-main-darkerBlue border-[#eaeaea] border rounded-xl font-bold mt-2.5 overflow-hidden relative
 }
+
+.file--error {
+    /* @apply bg-[#ff6262] text-[#fff] */
+}
