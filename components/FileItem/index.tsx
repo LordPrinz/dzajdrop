@@ -10,7 +10,7 @@ export default ({ file }) => {
 	const [progress, setProgress] = useState(0);
 
 	useEffect(() => {
-		console.log(file);
+		// const formData
 	}, []);
 
 	// useEffect(() => {
