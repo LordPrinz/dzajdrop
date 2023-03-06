@@ -1,4 +1,4 @@
-export default () => {
+export default ({ error }) => {
 	return (
 		<li className="file file--error">
 			<div className="flex justify-between items-center relative overflow-hidden pb-3">

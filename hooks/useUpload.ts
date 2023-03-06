@@ -21,7 +21,7 @@ export default (file: File) => {
 		};
 
 		axios
-			.post("/api/v1/upload", formData, config)
+			.post("/api/v1/files", formData, config)
 			.then((response) => {
 				setResponse(response);
 			})
@@ -30,7 +30,7 @@ export default (file: File) => {
 			});
 
 		setIsFinished(true);
-	}, []);
+	}, [file]);
 
 	return [isFinished, error, progress, response];
 };
