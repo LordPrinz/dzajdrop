@@ -1,26 +1,22 @@
 // import { upload } from "./api";
 
 type data = {
-	id: string;
-	path?: string;
+	fullLink: string;
+	shortLink: string;
 };
 
-export const saveFile = async (file: File, data: data) => {
-	if (!file) {
+export const saveFile = async (data: data) => {
+	if (!data) {
 		throw new Error("No file provided!");
 	}
 
-	if (!data?.id) {
-		throw new Error("No id provided!");
+	if (!data?.fullLink) {
+		throw new Error("No fullLink provided!");
 	}
 
-	// const response = await upload(file);
-
-	// if (!response.status) {
-	// throw new Error((response as any).error.message);
-	// }
-
-	// console.log(response);
+	if (!data?.shortLink) {
+		throw new Error("No shortLink provided!");
+	}
 
 	// save to mongo
 };
