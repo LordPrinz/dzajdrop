@@ -1,23 +1,18 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import rateLimit from "../../../../utils/rateLimit";
-import axios from "axios";
+import formidable from "formidable";
+import { NextApiHandler } from "next";
 
-const limiter = rateLimit({
-	interval: 1000,
-	uniqueTokenPerInterval: 500,
-});
+export const config = {
+	api: {
+		bodyParser: false,
+	},
+};
 
-export default async function handler(
-	req: NextApiRequest,
-	res: NextApiResponse
-) {
-	if (req.method === "POST") {
-		const form = axios.toFormData({
-			file: "text.txt",
-		});
+const handler: NextApiHandler = (req, res) => {
+	const form = formidable();
 
-		const response = await axios.post("https://api.anonfiles.com/upload", form);
+	form.parse(req, (err, fields, files) => {
+		console.log(files);
+	});
+};
 
-		console.log(response);
-	}
-}
+export default handler;
