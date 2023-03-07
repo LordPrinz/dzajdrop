@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import rateLimit from "../../../../utils/rateLimit";
+import axios from "axios";
 
 const limiter = rateLimit({
 	interval: 1000,
@@ -11,9 +12,12 @@ export default async function handler(
 	res: NextApiResponse
 ) {
 	if (req.method === "POST") {
-		return res.send({
-			status: 200,
-			message: "XD",
+		const form = axios.toFormData({
+			file: "text.txt",
 		});
+
+		const response = await axios.post("https://api.anonfiles.com/upload", form);
+
+		console.log(response);
 	}
 }
