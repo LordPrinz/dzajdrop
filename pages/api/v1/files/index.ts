@@ -70,15 +70,19 @@ const handler: NextApiHandler = async (req, res) => {
 					url: shortLink,
 				});
 			} catch (err) {
-				return console.error(err);
+				console.error(err);
+				return res.status(500).send({
+					message: "Something went wrong!",
+				});
 			}
 		});
+		return;
 	}
 
-	// const url = `${req.headers.host}/404`;
-	// const fetchRes = await fetch(`https://${url}`);
-	// const notFoundPage = await fetchRes.text();
-	// return res.status(404).send(notFoundPage);
+	const url = `${req.headers.host}/404`;
+	const fetchRes = await fetch(`https://${url}`);
+	const notFoundPage = await fetchRes.text();
+	return res.status(404).send(notFoundPage);
 };
 
 export default handler;
