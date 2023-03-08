@@ -19,9 +19,9 @@ export default async function handler(
 	}
 
 	if (req.method === "GET") {
-		const url = req.url?.split("/")[4]!;
+		const { id } = req.query;
 
-		const link = await getUrl(url);
+		const link = await getUrl(id as string);
 
 		const fileId = link.fileId;
 
