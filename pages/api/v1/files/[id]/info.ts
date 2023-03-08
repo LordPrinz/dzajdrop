@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { getInfo } from "../../../../../utils/api";
 import rateLimit from "../../../../../utils/rateLimit";
 
 const limiter = rateLimit({
@@ -13,7 +12,7 @@ export default async function handler(
 ) {
 	if (req.method === "GET") {
 		const { id } = req.query;
-		const info = await getInfo(id);
+		const info = null;
 
 		if (info.status === 404) {
 			res.status(404).send("Not Found");

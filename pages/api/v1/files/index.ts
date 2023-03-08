@@ -4,6 +4,7 @@ import { upload } from "node-annonfiles";
 import path from "path";
 import dbConnect from "../../../../lib/dbConnect";
 import { saveFile } from "../../../../utils/database";
+import rateLimit from "../../../../utils/rateLimit";
 import { generateShortLink } from "../../../../utils/shorter";
 
 export const config = {
@@ -12,7 +13,18 @@ export const config = {
 	},
 };
 
+const limiter = rateLimit({
+	interval: 1000,
+	uniqueTokenPerInterval: 500,
+});
+
 const handler: NextApiHandler = async (req, res) => {
+	try {
+		await limiter.check(res, 3, process.env.token!); // 3 requests per secound
+	} catch {
+		return res.status(429).json({ error: "Rate limit exceeded" });
+	}
+
 	if (req.method === "POST") {
 		await dbConnect();
 
@@ -41,14 +53,14 @@ const handler: NextApiHandler = async (req, res) => {
 				}
 				console.log(fileData);
 
-				const fullLink = fileData.data.file.url.short;
+				const fileId = fileData.data.file.metadata.id;
 
-				const shortLink = generateShortLink(fullLink);
+				const shortLink = generateShortLink(fileId);
 
 				// console.log(shortLink);
 
 				const response = await saveFile({
-					fullLink,
+					fileId,
 					shortLink,
 				});
 
