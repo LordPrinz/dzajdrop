@@ -1,4 +1,4 @@
-// import { upload } from "./api";
+import fileSchema from "../models/file-schema";
 
 type data = {
 	fullLink: string;
@@ -18,5 +18,12 @@ export const saveFile = async (data: data) => {
 		throw new Error("No shortLink provided!");
 	}
 
-	// save to mongo
+	const response = await (fileSchema as any).insertMany([
+		{
+			_id: data.shortLink,
+			full: data.fullLink,
+		},
+	]);
+
+	return response;
 };

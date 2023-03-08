@@ -2,6 +2,7 @@ import { IncomingForm } from "formidable";
 import { NextApiHandler } from "next";
 import { upload } from "node-annonfiles";
 import path from "path";
+import dbConnect from "../../../../lib/dbConnect";
 import { saveFile } from "../../../../utils/database";
 import { generateShortLink } from "../../../../utils/shorter";
 
@@ -13,6 +14,8 @@ export const config = {
 
 const handler: NextApiHandler = async (req, res) => {
 	if (req.method === "POST") {
+		await dbConnect();
+
 		const form = new IncomingForm();
 
 		form.on("fileBegin", (name, file) => {
@@ -42,12 +45,14 @@ const handler: NextApiHandler = async (req, res) => {
 
 				const shortLink = generateShortLink(fullLink);
 
-				console.log(shortLink);
+				// console.log(shortLink);
 
-				// const response = await saveFile({
-				// 	fullLink,
-				// 	shortLink,
-				// });
+				const response = await saveFile({
+					fullLink,
+					shortLink,
+				});
+
+				console.log(response);
 
 				return res.status(201).send({
 					url: shortLink,

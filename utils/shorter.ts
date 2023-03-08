@@ -1,3 +1,3 @@
 export const generateShortLink = (link: string) => {
-	return "";
+	return "xdd";
 };
