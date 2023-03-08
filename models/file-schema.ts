@@ -1,10 +1,9 @@
 import mongoose, { Schema } from "mongoose";
 
 const FileSchema = new Schema({
-	id: { type: String, required: true },
-	path: { type: String, default: "/" },
-	name: { type: String, required: true },
-	userId: { type: String, required: true },
+	_id: { type: String, required: true },
+	full: { type: String, required: true },
+	clicks: { type: Number, required: true },
 });
 
 const name = "FileSchema";
