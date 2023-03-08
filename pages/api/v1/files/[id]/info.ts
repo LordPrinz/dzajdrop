@@ -26,9 +26,7 @@ export default async function handler(
 		const link = await (fileSchema as any).findById(id);
 
 		if (!link) {
-			return {
-				notFound: true,
-			};
+			return res.status(404).json({ message: "Page not found!" });
 		}
 
 		const { fileId, clicks } = link;
