@@ -37,9 +37,7 @@ export default async function handler(
 
 		const { size, name } = additionalData.data.file.metadata;
 
-		const linkToFile = `https://anonfiles.com/${fileId}`;
-
-		return res.status(200).json({ linkToFile, clicks, size, name });
+		return res.status(200).json({ clicks, size, name });
 	}
 
 	return res.status(404).send("Not Found");

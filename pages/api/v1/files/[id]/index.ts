@@ -29,12 +29,8 @@ export default async function handler(
 			return res.status(404).json({ message: "Page not found!" });
 		}
 
-		const fileLink = `https://anonfiles.com/${fileId}`;
-
 		const downloadLink = await download(fileId);
 
-		return res
-			.status(200)
-			.json({ fileLink, downloadLink, clicks: link.clicks });
+		return res.status(200).json({ downloadLink });
 	}
 }
