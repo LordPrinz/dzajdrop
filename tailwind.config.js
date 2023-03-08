@@ -6,6 +6,10 @@ module.exports = {
 	],
 
 	theme: {
+		screens: {
+			tablet: { max: "650px" },
+			smallDesk: { max: "800px" },
+		},
 		colors: {
 			main: {
 				lighterBlue: "#DAEAFD",

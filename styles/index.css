@@ -2,49 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 * {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    font-family: "Open Sans", "Lato", sans-serif;
-    color: #414141;
-    background-color: #eee;
-    scroll-behavior: smooth;
+	margin: 0;
+	font-family: "Open Sans", "Lato", sans-serif;
+	color: #414141;
+	background-color: #eee;
+	scroll-behavior: smooth;
 }
 
 #__next {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
 
 .upload-input {
-    @apply p-12 transition px-40 border-dashed border-2 rounded-2xl border-main-grey text-main-darkerBlue font-bold w-full flex flex-col justify-center items-center cursor-pointer;
+	@apply p-12 transition px-40 border-dashed border-2 rounded-2xl border-main-grey text-main-darkerBlue font-bold w-full flex flex-col justify-center items-center cursor-pointer;
 }
 
 .upload-container {
-    @apply p-8 bg-[#f8f8f8] inline-flex -translate-y-14 rounded-3xl shadow-md shadow-main-grey select-none flex-col gap-4;
+	@apply p-8 bg-[#f8f8f8] inline-flex -translate-y-14 rounded-3xl shadow-md shadow-main-grey select-none flex-col gap-4;
 }
 
 .upload__icon {
-    @apply w-full
+	@apply w-full;
 }
 
 .upload__icon-container {
-    @apply w-28 mb-6 transition;
+	@apply w-28 mb-6 transition;
 }
 
 .file-uploader-cleaner {
-    @apply !border-none
+	@apply !border-none;
 }
 
 .file {
-    @apply p-5 py-3 text-main-darkerBlue border-[#eaeaea] border rounded-xl font-bold mt-2.5 overflow-hidden relative
+	@apply p-5 py-3 text-main-darkerBlue border-[#eaeaea] border rounded-xl font-bold mt-2.5 overflow-hidden relative;
 }
 
-.file--error {
-    /* @apply bg-[#ff6262] text-[#fff] */
+.fourohfour__container {
+	@apply flex justify-center items-center flex-1 translate-y-1/4 flex-col scale-75;
+}
+
+.fourohfour__image {
+	@apply -translate-y-4;
+}
+
+.fourohfour__title {
+	@apply text-5xl mb-11 translate-y-10 font-extrabold ml-10 tracking-widest text-[#1C1C1C] tablet:text-3xl text-center tablet:ml-4;
 }
