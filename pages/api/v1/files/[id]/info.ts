@@ -37,7 +37,7 @@ export default async function handler(
 
 		const { size, name } = additionalData.data.file.metadata;
 
-		return res.status(200).json({ clicks, size, name });
+		return res.status(200).json({ downloads: clicks, size, name });
 	}
 
 	return res.status(404).send("Not Found");

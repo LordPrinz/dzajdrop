@@ -10,5 +10,9 @@ export default ({ file }) => {
 		return <ErrorItem error={error} />;
 	}
 
+	if (isFinished) {
+		console.log(response);
+	}
+
 	return <ProgressItem progress={progress} />;
 };

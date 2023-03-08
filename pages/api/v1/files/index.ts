@@ -1,11 +1,13 @@
 import { IncomingForm } from "formidable";
+import { nanoid } from "nanoid";
 import { NextApiHandler } from "next";
 import { upload } from "node-annonfiles";
 import path from "path";
 import dbConnect from "../../../../lib/dbConnect";
+import fileSchema from "../../../../models/file-schema";
 import { saveFile } from "../../../../utils/database";
+import generateRandom from "../../../../utils/generateRandom";
 import rateLimit from "../../../../utils/rateLimit";
-import { generateShortLink } from "../../../../utils/shorter";
 
 export const config = {
 	api: {
@@ -55,20 +57,31 @@ const handler: NextApiHandler = async (req, res) => {
 
 				const fileId = fileData.data.file.metadata.id;
 
-				const shortLink = generateShortLink(fileId);
+				const link = await (fileSchema as any).findOne({ fileId });
 
-				// console.log(shortLink);
+				if (link) {
+					return res.status(201).json({ message: "Created", url: link._id });
+				}
+
+				let isGenerated = false;
+				let shortLink: string;
+
+				while (!isGenerated) {
+					shortLink = nanoid(generateRandom(3, 8));
+					const link = await (fileSchema as any).findOne({ _id: shortLink });
+					if (link) {
+						continue;
+					}
+
+					isGenerated = true;
+				}
 
 				const response = await saveFile({
-					fileId,
 					shortLink,
+					fileId,
 				});
 
-				console.log(response);
-
-				return res.status(201).send({
-					url: shortLink,
-				});
+				return res.status(201).json({ message: "Created", shortLink });
 			} catch (err) {
 				console.error(err);
 				return res.status(500).send({

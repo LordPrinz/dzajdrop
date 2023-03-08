@@ -1,10 +1,14 @@
+import { RxCross2 } from "react-icons/rx";
+import FailIcon from "./FailIcon";
+
 export default ({ error }) => {
+	console.log(error);
 	return (
 		<li className="file file--error">
-			<div className="flex justify-between items-center relative overflow-hidden pb-3">
+			<div className="flex justify-between items-center relative overflow-hidden py-1.5">
 				<div>
 					<div
-						className="text-sm mb-1 font-bold"
+						className="text-l font-bold"
 						style={{
 							transitionDuration: "0.3s",
 							transitionDelay: "0.4s",
@@ -12,10 +16,9 @@ export default ({ error }) => {
 					>
 						Error
 					</div>
-					<div className="text-xs font-normal text-main-grey">
-						&#183; 4 seconds left
-					</div>
 				</div>
+
+				<FailIcon />
 			</div>
 		</li>
 	);
