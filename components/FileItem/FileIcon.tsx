@@ -15,22 +15,22 @@ export default ({ extension }) => {
 		case "jpg":
 			return <AiOutlineFileJpg className="file-icon" />;
 		case "gif":
-			return <AiOutlineFileGif />;
+			return <AiOutlineFileGif className="file-icon" />;
 		case "pdf":
-			return <AiOutlineFilePdf />;
+			return <AiOutlineFilePdf className="file-icon" />;
 		case "zip":
-			return <AiOutlineFileZip />;
+			return <AiOutlineFileZip className="file-icon" />;
 		case "xls":
-			return <AiOutlineFileExcel />;
+			return <AiOutlineFileExcel className="file-icon" />;
 		case "xlsx":
-			return <AiOutlineFileExcel />;
+			return <AiOutlineFileExcel className="file-icon" />;
 		case "txt":
-			return <AiOutlineFileText />;
+			return <AiOutlineFileText className="file-icon" />;
 		case "ppt":
-			return <AiOutlineFilePpt />;
+			return <AiOutlineFilePpt className="file-icon" />;
 		case "docx":
-			return <AiOutlineFileWord />;
+			return <AiOutlineFileWord className="file-icon" />;
 		default:
-			return <AiOutlineFileUnknown />;
+			return <AiOutlineFileUnknown className="file-icon" />;
 	}
 };
