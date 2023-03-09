@@ -58,7 +58,7 @@ body {
 }
 
 .file-container {
-	@apply bg-[#f8f8f8] rounded-r-full pl-5 rounded-l-2xl inline-flex shadow-sm shadow-main-grey select-none  items-center;
+	@apply bg-[#f8f8f8] rounded-r-full pl-8  rounded-l-full inline-flex shadow-sm shadow-main-grey select-none  items-center;
 }
 
 .file-icon {
