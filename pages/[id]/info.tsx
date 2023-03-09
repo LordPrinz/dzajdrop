@@ -23,11 +23,18 @@ const StatsPage: NextPage<Props> = (props) => {
 				<title>{props.name} | info</title>
 			</Head>
 			<div className="file-container">
-				<FileIcon extension={props.extension} />
-				<span>{props.name}</span>
-				<span>{props.size}</span>
-				<span>{props.extension}</span>
-				<button onClick={downloadClickHandler}>Download</button>
+				<div className="items-center gap-10 flex rounded-r-full">
+					<FileIcon extension={props.extension} />
+					<span>{props.name}</span>
+					<span>{props.size}</span>
+					<span>{props.extension}</span>
+				</div>
+				<button
+					className="ml-3 text-[#f8f8f8] pr-6 py-4 rounded-r-full  pl-12 bg-[#4762FB] overflow-hidden relative download-button"
+					onClick={downloadClickHandler}
+				>
+					Download
+				</button>
 			</div>
 		</>
 	);
