@@ -1,6 +1,7 @@
 import type { NextPage, GetServerSideProps } from "next";
 import Head from "next/head";
 import { getInfo } from "node-annonfiles";
+import FileIcon from "../../components/FileItem/FileIcon";
 import dbConnect from "../../lib/dbConnect";
 import fileSchema from "../../models/file-schema";
 
@@ -8,15 +9,26 @@ type Props = {
 	size: string;
 	name: string;
 	id: string;
+	extension: string;
 };
 
 const StatsPage: NextPage<Props> = (props) => {
+	const downloadClickHandler = () => {
+		console.log("XD");
+	};
+
 	return (
 		<>
 			<Head>
-				<title>D</title>
+				<title>{props.name} | info</title>
 			</Head>
-			<div className="upload-container">Less go</div>
+			<div className="file-container">
+				<FileIcon extension={props.extension} />
+				<span>{props.name}</span>
+				<span>{props.size}</span>
+				<span>{props.extension}</span>
+				<button onClick={downloadClickHandler}>Download</button>
+			</div>
 		</>
 	);
 };
@@ -40,13 +52,18 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 
 	const fetchedData = await getInfo(fileId);
 
-	const info = fetchedData.data.file.metadata;
+	const { name, id, size } = fetchedData.data.file.metadata;
+
+	const extensionParts = name.split("_");
+
+	const extension = extensionParts[extensionParts.length - 1];
 
 	return {
 		props: {
-			size: info.size.readable,
-			name: info.name,
-			id: info.id,
+			size: size.readable,
+			name,
+			id,
+			extension,
 		},
 	};
 };

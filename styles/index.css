@@ -58,5 +58,5 @@ body {
 }
 
 .file-container {
-	@apply p-8 bg-[#f8f8f8] inline-flex rounded-3xl shadow-md shadow-main-grey select-none flex-col gap-4;
+	@apply p-8 bg-[#f8f8f8] inline-flex rounded-xl shadow-sm shadow-main-grey select-none flex-col gap-4;
 }
