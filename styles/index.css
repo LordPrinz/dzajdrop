@@ -26,7 +26,7 @@ body {
 }
 
 .upload-container {
-	@apply p-8 bg-[#f8f8f8] inline-flex -translate-y-14 rounded-3xl shadow-md shadow-main-grey select-none flex-col gap-4;
+	@apply p-8 bg-[#f8f8f8] inline-flex rounded-3xl shadow-md shadow-main-grey select-none flex-col gap-4;
 }
 
 .upload__icon {
@@ -55,4 +55,8 @@ body {
 
 .fourohfour__title {
 	@apply text-5xl mb-11 translate-y-10 font-extrabold ml-10 tracking-widest text-[#1C1C1C] tablet:text-3xl text-center tablet:ml-4;
+}
+
+.file-container {
+	@apply p-8 bg-[#f8f8f8] inline-flex rounded-3xl shadow-md shadow-main-grey select-none flex-col gap-4;
 }
