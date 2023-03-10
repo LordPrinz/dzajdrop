@@ -8,7 +8,7 @@ import fileSchema from "../../../../models/file-schema";
 import { saveFile } from "../../../../utils/database";
 import generateRandom from "../../../../utils/generateRandom";
 import rateLimit from "../../../../utils/rateLimit";
-
+import fs from "fs";
 export const config = {
 	api: {
 		bodyParser: false,
@@ -32,9 +32,18 @@ const handler: NextApiHandler = async (req, res) => {
 
 		const form = new IncomingForm();
 
-		form.on("fileBegin", (name, file) => {
-			const newPath = file.filepath.slice(0, -25);
-			file.filepath = path.join(newPath, file.originalFilename);
+		form.on("fileBegin", async (name, file) => {
+			const baseDirectory = path.dirname(file.filepath);
+			const dateFolder = Date.now().toString();
+
+			const destDirectory = path.join(baseDirectory, dateFolder);
+
+			fs.mkdir(destDirectory, (err) => {
+				if (err) {
+					console.log(err);
+				}
+			});
+			file.filepath = path.join(destDirectory, file.originalFilename);
 		});
 
 		form.parse(req, async (err, fields, files) => {
@@ -43,17 +52,26 @@ const handler: NextApiHandler = async (req, res) => {
 				return;
 			}
 
-			const path = (files.file as any).filepath;
+			const fPath = (files.file as any).filepath;
+
+			const dirname = path.dirname(fPath);
 
 			try {
 				const fileData = await upload({
-					file: path,
+					file: fPath,
 					key: null,
 				});
+
+				(fs as any).rm(dirname, { recursive: true }, (err) => {
+					// deprecationWarning forced me to use rm but its not in the types
+					if (err) {
+						console.log(err);
+					}
+				});
+
 				if (!fileData.status) {
 					throw new Error("Upload failed!");
 				}
-				console.log(fileData);
 
 				const fileId = fileData.data.file.metadata.id;
 
