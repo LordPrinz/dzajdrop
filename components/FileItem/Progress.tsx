@@ -31,7 +31,7 @@ export default ({ progress }) => {
 	return (
 		<li className="file">
 			<div
-				className="absolute top-0 -left-full w-full h-full bg-main-lighterGrey -z-10 transition"
+				className="absolute top-0 -left-full w-full h-full bg-main-lighterGrey z-0 transition"
 				style={{
 					transform: `translateX(${progress}%)`,
 				}}

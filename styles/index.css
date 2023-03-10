@@ -64,6 +64,9 @@ body {
 .file-icon {
 	@apply text-3xl;
 }
+.file--error {
+	@apply bg-[#FFEBEE] border-[#ffe8eb] text-[#F44336];
+}
 
 .download-button::after {
 	content: "";
