@@ -46,7 +46,7 @@ body {
 }
 
 .fourohfour__container {
-	@apply flex justify-center items-center flex-1 translate-y-1/4 flex-col scale-75;
+	@apply flex justify-center items-center flex-1  flex-col scale-75;
 }
 
 .fourohfour__image {

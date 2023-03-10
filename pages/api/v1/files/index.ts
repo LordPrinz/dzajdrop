@@ -62,7 +62,7 @@ const handler: NextApiHandler = async (req, res) => {
 					key: null,
 				});
 
-				(fs as any).rm(dirname, { recursive: true }, (err) => {
+				(fs as any).rm(dirname, { recursive: true }, (err: any) => {
 					// deprecationWarning forced me to use rm but its not in the types
 					if (err) {
 						console.log(err);
@@ -94,7 +94,7 @@ const handler: NextApiHandler = async (req, res) => {
 					isGenerated = true;
 				}
 
-				const response = await saveFile({
+				await saveFile({
 					shortLink,
 					fileId,
 				});
