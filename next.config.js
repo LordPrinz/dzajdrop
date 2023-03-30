@@ -2,7 +2,7 @@ module.exports = {
 	async rewrites() {
 		return [
 			{
-				source: "/api/v1/uploadFile",
+				source: "/api/upload",
 				destination: "https://api.anonfiles.com/upload",
 			},
 		];

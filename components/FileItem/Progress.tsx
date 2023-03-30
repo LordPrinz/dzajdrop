@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { IoCloseSharp, IoPause } from "react-icons/io5";
 import SuccessIcon from "./SuccessIcon";
 export default ({ progress }) => {
-	console.log(progress);
 	const [isEndAnimation, setIsEndAnimation] = useState(false);
 	const [text, setText] = useState("Uploading...");
 	const [icon, setIcon] = useState(null);
