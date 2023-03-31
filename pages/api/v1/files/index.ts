@@ -21,39 +21,34 @@ const handler: NextApiHandler = async (req, res) => {
 	if (req.method === "POST") {
 		await dbConnect();
 
-		console.log(req.body);
+		const fileId = req.body.id;
 
-		// const link = await (fileSchema as any).findOne({ fileId });
+		const link = await (fileSchema as any).findOne({ fileId });
 
-		// 		if (link) {
-		// 			return res.status(201).json({ message: "Created", url: link._id });
-		// 		}
+		if (link) {
+			return res.status(201).json({ message: "Created", url: link._id });
+		}
 
-		// 		let isGenerated = false;
-		// 		let shortLink: string;
+		let isGenerated = false;
+		let shortLink: string;
 
-		// 		while (!isGenerated) {
-		// 			shortLink = nanoid(generateRandom(3, 8));
-		// 			const link = await (fileSchema as any).findOne({ _id: shortLink });
-		// 			if (link) {
-		// 				continue;
-		// 			}
+		while (!isGenerated) {
+			shortLink = nanoid(generateRandom(3, 8));
+			const link = await (fileSchema as any).findOne({ _id: shortLink });
+			if (link) {
+				continue;
+			}
 
-		// 			isGenerated = true;
-		// 		}
+			isGenerated = true;
+		}
 
-		// 		await saveFile({
-		// 			shortLink,
-		// 			fileId,
-		// 		});
+		await saveFile({
+			shortLink,
+			fileId,
+		});
 
-		// 		return res.status(201).json({ message: "Created", shortLink });
+		return res.status(201).json({ message: "Created", shortLink });
 	}
-
-	const url = `${req.headers.host}/404`;
-	const fetchRes = await fetch(`https://${url}`);
-	const notFoundPage = await fetchRes.text();
-	return res.status(404).send(notFoundPage);
 };
 
 export default handler;
