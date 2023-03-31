@@ -1,4 +1,4 @@
-export type File = {
+export type AnnonResponse = {
 	url: {
 		full: string;
 		short: string;

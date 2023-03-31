@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default ({ file }) => {
-	const [error, progress, response] = useUpload(file);
+	const { error, progress, response } = useUpload(file);
 
 	const [shortLink, setShortLink] = useState("");
 	const [linkError, setLinkError] = useState(null);
