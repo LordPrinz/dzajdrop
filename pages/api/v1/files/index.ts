@@ -1,19 +1,10 @@
-import { IncomingForm } from "formidable";
 import { nanoid } from "nanoid";
 import { NextApiHandler } from "next";
-import { upload } from "node-annonfiles";
-import path from "path";
 import dbConnect from "../../../../lib/dbConnect";
 import fileSchema from "../../../../models/file-schema";
 import { saveFile } from "../../../../utils/database";
 import generateRandom from "../../../../utils/generateRandom";
 import rateLimit from "../../../../utils/rateLimit";
-import fs from "fs";
-export const config = {
-	api: {
-		bodyParser: false,
-	},
-};
 
 const limiter = rateLimit({
 	interval: 1000,
@@ -30,84 +21,33 @@ const handler: NextApiHandler = async (req, res) => {
 	if (req.method === "POST") {
 		await dbConnect();
 
-		const form = new IncomingForm();
+		console.log(req.body);
 
-		form.on("fileBegin", async (name, file) => {
-			const baseDirectory = path.dirname(file.filepath);
-			const dateFolder = Date.now().toString();
+		// const link = await (fileSchema as any).findOne({ fileId });
 
-			const destDirectory = path.join(baseDirectory, dateFolder);
+		// 		if (link) {
+		// 			return res.status(201).json({ message: "Created", url: link._id });
+		// 		}
 
-			fs.mkdir(destDirectory, (err) => {
-				if (err) {
-					console.log(err);
-				}
-			});
-			file.filepath = path.join(destDirectory, file.originalFilename);
-		});
+		// 		let isGenerated = false;
+		// 		let shortLink: string;
 
-		form.parse(req, async (err, fields, files) => {
-			if (err) {
-				console.error(err);
-				return;
-			}
+		// 		while (!isGenerated) {
+		// 			shortLink = nanoid(generateRandom(3, 8));
+		// 			const link = await (fileSchema as any).findOne({ _id: shortLink });
+		// 			if (link) {
+		// 				continue;
+		// 			}
 
-			const fPath = (files.file as any).filepath;
+		// 			isGenerated = true;
+		// 		}
 
-			const dirname = path.dirname(fPath);
+		// 		await saveFile({
+		// 			shortLink,
+		// 			fileId,
+		// 		});
 
-			try {
-				const fileData = await upload({
-					file: fPath,
-					key: null,
-				});
-
-				(fs as any).rm(dirname, { recursive: true }, (err: any) => {
-					// deprecationWarning forced me to use rm but its not in the types
-					if (err) {
-						console.log(err);
-					}
-				});
-
-				if (!fileData.status) {
-					throw new Error("Upload failed!");
-				}
-
-				const fileId = fileData.data.file.metadata.id;
-
-				const link = await (fileSchema as any).findOne({ fileId });
-
-				if (link) {
-					return res.status(201).json({ message: "Created", url: link._id });
-				}
-
-				let isGenerated = false;
-				let shortLink: string;
-
-				while (!isGenerated) {
-					shortLink = nanoid(generateRandom(3, 8));
-					const link = await (fileSchema as any).findOne({ _id: shortLink });
-					if (link) {
-						continue;
-					}
-
-					isGenerated = true;
-				}
-
-				await saveFile({
-					shortLink,
-					fileId,
-				});
-
-				return res.status(201).json({ message: "Created", shortLink });
-			} catch (err) {
-				console.error(err);
-				return res.status(500).send({
-					message: "Something went wrong!",
-				});
-			}
-		});
-		return;
+		// 		return res.status(201).json({ message: "Created", shortLink });
 	}
 
 	const url = `${req.headers.host}/404`;
