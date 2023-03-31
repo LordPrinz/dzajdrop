@@ -1,3 +1,11 @@
+import { useEffect } from "react";
+
 export default ({ link }) => {
-	return <li className="file">Completed {link}</li>;
+	let response = "Generating...";
+
+	if (link) {
+		response = link;
+	}
+
+	return <li className="file">{response}</li>;
 };

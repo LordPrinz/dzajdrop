@@ -4,11 +4,13 @@ import ProgressItem from "./Progress";
 import useUpload from "./../../hooks/useUpload";
 import { useEffect, useState } from "react";
 import axios from "axios";
+
 export default ({ file }) => {
 	const [error, progress, response] = useUpload(file);
 
 	const [shortLink, setShortLink] = useState("");
 	const [linkError, setLinkError] = useState(null);
+	const [showFinished, setShowFinished] = useState(false);
 
 	useEffect(() => {
 		if (!response) {
@@ -26,19 +28,21 @@ export default ({ file }) => {
 			});
 	}, [response]);
 
-	let component = <ProgressItem progress={progress} />;
+	useEffect(() => {
+		if (progress === 100) {
+			setTimeout(() => setShowFinished(true), 1500);
+		}
+	}, [progress]);
 
-	if (progress === 100) {
+	let component = <ProgressItem progress={progress} link={shortLink} />;
+
+	if (showFinished) {
 		component = <Finished link={shortLink} />;
-	}
-
-	if (error) {
+	} else if (error) {
 		component = <ErrorItem error={error} />;
-	}
-
-	if (linkError) {
+	} else if (linkError) {
 		component = <ErrorItem error={linkError} />;
 	}
 
-	return <ProgressItem progress={progress} />;
+	return component;
 };
