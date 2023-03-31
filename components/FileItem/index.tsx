@@ -30,7 +30,7 @@ export default ({ file }) => {
 
 	useEffect(() => {
 		if (progress === 100) {
-			setTimeout(() => setShowFinished(true), 1500);
+			setTimeout(() => setShowFinished(true), 1800);
 		}
 	}, [progress]);
 
