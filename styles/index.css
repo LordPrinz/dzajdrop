@@ -80,3 +80,7 @@ body {
 	border-bottom-right-radius: 9999px;
 	background: #f8f8f8;
 }
+
+.notification-icon {
+	@apply transition hover:text-slate-600 hover:transition absolute right-0 bg-[#e5e7eb]  z-10;
+}
