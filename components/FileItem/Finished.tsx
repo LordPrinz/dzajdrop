@@ -12,11 +12,11 @@ export default ({ link }) => {
 	}, []);
 
 	return (
-		<li className="file bg-main-lighterGrey">
+		<li className="file2 bg-main-lighterGrey ">
 			{!link ? (
-				<span>
+				<div className="py-3 px-5">
 					Generating link{Array.from({ length: dots }).map((_, i) => ".")}
-				</span>
+				</div>
 			) : (
 				<div>
 					<LinkCopier url={link} />

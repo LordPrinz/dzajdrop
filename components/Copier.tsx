@@ -15,13 +15,13 @@ const LinkCopier: FC<Props> = ({ url }) => {
 	const icon = isClicked ? (
 		<AiOutlineCheck
 			size={25}
-			className={`notification-icon`}
+			className={`notification-icon text-[#45b36a] hover:text-[#3d9c5d]`}
 			onClick={copyHandler}
 		/>
 	) : (
 		<AiOutlineCopy
 			size={25}
-			className={`notification-icon`}
+			className={`notification-icon `}
 			onClick={copyHandler}
 		/>
 	);
@@ -29,7 +29,7 @@ const LinkCopier: FC<Props> = ({ url }) => {
 	const link = `${window.location.href.replace("www.", "")}${url}`;
 
 	return (
-		<div className={`notification`} onClick={copyHandler}>
+		<div className={`notification cursor-pointer`} onClick={copyHandler}>
 			<div className="notification-link">{link}</div>
 			{icon}
 		</div>

@@ -45,6 +45,10 @@ body {
 	@apply p-5 py-3 text-main-darkerBlue border-[#eaeaea] border rounded-xl font-bold mt-2.5 overflow-hidden relative;
 }
 
+.file2 {
+	@apply text-main-darkerBlue border-[#eaeaea] border rounded-xl font-bold mt-2.5 overflow-hidden relative;
+}
+
 .fourohfour__container {
 	@apply flex justify-center items-center flex-1  flex-col scale-75;
 }
@@ -82,12 +86,12 @@ body {
 }
 
 .notification-icon {
-	@apply transition hover:text-[#475569] hover:transition absolute right-0 top-1/2 -translate-y-1/2 z-10;
+	@apply transition hover:text-[#475569] hover:transition absolute right-5 top-1/2 -translate-y-1/2 z-10;
 }
 
 .notification-link {
-	@apply w-full overflow-hidden py-2;
+	@apply w-full overflow-hidden;
 }
 .notification {
-	@apply flex items-center justify-between pr-5 h-full relative w-full;
+	@apply flex items-center justify-between pr-5 h-full relative w-full py-5 px-5;
 }
