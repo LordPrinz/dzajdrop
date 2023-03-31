@@ -86,9 +86,8 @@ body {
 }
 
 .notification-link {
-	@apply w-full overflow-hidden;
+	@apply w-full overflow-hidden py-2;
 }
-
 .notification {
-	@apply flex items-center justify-between pr-5 h-full relative w-full py-2;
+	@apply flex items-center justify-between pr-5 h-full relative w-full;
 }

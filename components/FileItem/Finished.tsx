@@ -12,7 +12,7 @@ export default ({ link }) => {
 	}, []);
 
 	return (
-		<li className="file">
+		<li className="file bg-main-lighterGrey">
 			{!link ? (
 				<span>
 					Generating link{Array.from({ length: dots }).map((_, i) => ".")}
