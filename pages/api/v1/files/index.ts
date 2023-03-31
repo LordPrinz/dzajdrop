@@ -18,37 +18,39 @@ const handler: NextApiHandler = async (req, res) => {
 		return res.status(429).json({ error: "Rate limit exceeded" });
 	}
 
-	if (req.method === "POST") {
-		await dbConnect();
-
-		const fileId = req.body.id;
-
-		const link = await (fileSchema as any).findOne({ fileId });
-
-		if (link) {
-			return res.status(201).json({ message: "Created", url: link._id });
-		}
-
-		let isGenerated = false;
-		let shortLink: string;
-
-		while (!isGenerated) {
-			shortLink = nanoid(generateRandom(3, 8));
-			const link = await (fileSchema as any).findOne({ _id: shortLink });
-			if (link) {
-				continue;
-			}
-
-			isGenerated = true;
-		}
-
-		await saveFile({
-			shortLink,
-			fileId,
-		});
-
-		return res.status(201).json({ message: "Created", shortLink });
+	if (req.method !== "POST") {
+		return res.status(405).json({ error: "Method Not Allowed" });
 	}
+
+	await dbConnect();
+
+	const fileId = req.body.id;
+
+	const link = await (fileSchema as any).findOne({ fileId });
+
+	if (link) {
+		return res.status(201).json({ message: "Created", url: link._id });
+	}
+
+	let isGenerated = false;
+	let shortLink: string;
+
+	while (!isGenerated) {
+		shortLink = nanoid(generateRandom(3, 8));
+		const link = await (fileSchema as any).findOne({ _id: shortLink });
+		if (link) {
+			continue;
+		}
+
+		isGenerated = true;
+	}
+
+	await saveFile({
+		shortLink,
+		fileId,
+	});
+
+	return res.status(201).json({ message: "Created", shortLink });
 };
 
 export default handler;

@@ -8,6 +8,7 @@ export default ({ file }) => {
 	const [error, progress, response] = useUpload(file);
 
 	const [shortLink, setShortLink] = useState("");
+	const [linkError, setLinkError] = useState(null);
 
 	useEffect(() => {
 		if (!response) {
@@ -18,12 +19,25 @@ export default ({ file }) => {
 				id: response.metadata.id,
 			})
 			.then((response) => {
-				console.log(response);
+				setShortLink(response.data.shortLink);
+			})
+			.catch((err) => {
+				setLinkError("Error while creating link!");
 			});
 	}, [response]);
 
+	let component = <ProgressItem progress={progress} />;
+
+	if (progress === 100) {
+		component = <Finished link={shortLink} />;
+	}
+
 	if (error) {
-		return <ErrorItem error={error} />;
+		component = <ErrorItem error={error} />;
+	}
+
+	if (linkError) {
+		component = <ErrorItem error={linkError} />;
 	}
 
 	return <ProgressItem progress={progress} />;

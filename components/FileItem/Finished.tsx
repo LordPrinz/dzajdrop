@@ -1,3 +1,3 @@
-export default () => {
-	return <li className="file">Completed</li>;
+export default ({ link }) => {
+	return <li className="file">Completed {link}</li>;
 };
