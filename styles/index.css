@@ -82,5 +82,13 @@ body {
 }
 
 .notification-icon {
-	@apply transition hover:text-[#475569] hover:transition absolute right-0 bg-[#e5e7eb]  z-10;
+	@apply transition hover:text-[#475569] hover:transition absolute right-0 top-1/2 -translate-y-1/2 z-10;
+}
+
+.notification-link {
+	@apply w-full overflow-hidden;
+}
+
+.notification {
+	@apply flex items-center justify-between pr-5 h-full relative w-full py-2;
 }

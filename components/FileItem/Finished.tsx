@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import LinkCopier from "../Copier";
 
 export default ({ link }) => {
 	const [dots, setDots] = useState(0);
@@ -17,7 +18,9 @@ export default ({ link }) => {
 					Generating link{Array.from({ length: dots }).map((_, i) => ".")}
 				</span>
 			) : (
-				<div>{link}</div>
+				<div>
+					<LinkCopier url={link} />
+				</div>
 			)}
 		</li>
 	);
