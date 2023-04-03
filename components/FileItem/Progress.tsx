@@ -74,7 +74,7 @@ export default ({
 				<div className="flex items-center gap-3">
 					{isIconVisible ? (
 						<div
-							className="bg-[#eaeff5] rounded-full p-2 text-[#869aaf]"
+							className="bg-[#eaeff5] rounded-full p-2 text-[#869aaf] cursor-pointer"
 							style={fadeOutStyle}
 						>
 							{!isPaused ? (
@@ -88,7 +88,7 @@ export default ({
 					)}
 					{isIconVisible ? (
 						<div
-							className="bg-[#f8e4ea] rounded-full p-2 text-[#fd274a] "
+							className="bg-[#f8e4ea] rounded-full p-2 text-[#fd274a] cursor-pointer"
 							style={fadeOutStyle}
 						>
 							<IoCloseSharp onClick={cancelUpload} />
