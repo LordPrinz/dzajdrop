@@ -6,11 +6,25 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default ({ file }) => {
-	const { error, progress, response } = useUpload(file);
+	const {
+		error,
+		progress,
+		response,
+		isPaused,
+		pauseUpload,
+		cancelUpload,
+		resumeUpload,
+	} = useUpload(file);
 
 	const [shortLink, setShortLink] = useState("");
 	const [linkError, setLinkError] = useState(null);
 	const [showFinished, setShowFinished] = useState(false);
+	const [isCancelled, setIsCancelled] = useState(false);
+
+	const cancelHandler = () => {
+		cancelUpload();
+		setIsCancelled(true);
+	};
 
 	useEffect(() => {
 		if (!response) {
@@ -34,7 +48,19 @@ export default ({ file }) => {
 		}
 	}, [progress]);
 
-	let component = <ProgressItem progress={progress} link={shortLink} />;
+	let component = (
+		<ProgressItem
+			progress={progress}
+			isPaused={isPaused}
+			pauseUpload={pauseUpload}
+			cancelUpload={cancelHandler}
+			resumeUpload={resumeUpload}
+		/>
+	);
+
+	if (isCancelled) {
+		return <ErrorItem error={"Upload cancelled!"} />;
+	}
 
 	if (showFinished) {
 		component = <Finished link={shortLink} />;

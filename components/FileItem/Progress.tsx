@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
-import { IoCloseSharp, IoPause } from "react-icons/io5";
+import { IoCloseSharp, IoPause, IoPlay } from "react-icons/io5";
 import SuccessIcon from "./SuccessIcon";
-export default ({ progress, link }) => {
+export default ({
+	progress,
+	isPaused,
+	cancelUpload,
+	pauseUpload,
+	resumeUpload,
+}) => {
 	const [isEndAnimation, setIsEndAnimation] = useState(false);
 	const [text, setText] = useState("Uploading...");
 	const [icon, setIcon] = useState(null);
@@ -26,6 +32,16 @@ export default ({ progress, link }) => {
 			}, 460);
 		}
 	}, [progress]);
+
+	const pauseHandler = () => {
+		console.log(isPaused);
+
+		if (isPaused) {
+			return resumeUpload();
+		}
+
+		pauseUpload();
+	};
 
 	return (
 		<li className="file">
@@ -61,7 +77,11 @@ export default ({ progress, link }) => {
 							className="bg-[#eaeff5] rounded-full p-2 text-[#869aaf]"
 							style={fadeOutStyle}
 						>
-							<IoPause />
+							{!isPaused ? (
+								<IoPause onClick={pauseHandler} />
+							) : (
+								<IoPlay onClick={pauseHandler} />
+							)}
 						</div>
 					) : (
 						""
@@ -71,7 +91,7 @@ export default ({ progress, link }) => {
 							className="bg-[#f8e4ea] rounded-full p-2 text-[#fd274a] "
 							style={fadeOutStyle}
 						>
-							<IoCloseSharp />
+							<IoCloseSharp onClick={cancelUpload} />
 						</div>
 					) : (
 						""

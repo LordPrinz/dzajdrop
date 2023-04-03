@@ -1,10 +1,18 @@
-import { RxCross2 } from "react-icons/rx";
 import FailIcon from "./FailIcon";
-
+import { useState } from "react";
 export default ({ error }) => {
-	console.log(error);
+	const [isVisible, setIsVisible] = useState(true);
+
+	const deleteElement = () => {
+		setIsVisible(false);
+	};
+
+	if (!isVisible) {
+		return null;
+	}
+
 	return (
-		<li className="file file--error">
+		<li className="file file--error" onClick={deleteElement}>
 			<div className="flex justify-between items-center relative overflow-hidden py-1.5">
 				<div>
 					<div
@@ -14,7 +22,7 @@ export default ({ error }) => {
 							transitionDelay: "0.4s",
 						}}
 					>
-						Error
+						{error ? error : "Error!"}
 					</div>
 				</div>
 
