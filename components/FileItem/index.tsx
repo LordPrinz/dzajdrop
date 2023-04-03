@@ -62,6 +62,11 @@ export default ({ file }) => {
 		return <ErrorItem error={"Upload cancelled!"} />;
 	}
 
+	if (error) {
+		component = <ErrorItem error={error} />;
+		return component;
+	}
+
 	if (showFinished) {
 		component = <Finished link={shortLink} />;
 	} else if (error) {

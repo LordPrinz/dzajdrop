@@ -15,7 +15,7 @@ export default ({ addFile }) => {
 			label="Drop your file here, or browse"
 			handleChange={addFile}
 			name="file"
-			maxSize={20480}
+			maxSize={19000}
 			hoverTitle={" "}
 			multiple={true}
 			dropMessageStyle={{
@@ -37,7 +37,12 @@ export default ({ addFile }) => {
 						isDragging ? "-translate-y-1.5 transition" : ""
 					}`}
 				>
-					<Image className="upload__icon" src={uploadIcon} alt="Folders icon" />
+					<Image
+						className="upload__icon"
+						src={uploadIcon}
+						alt="Folders icon"
+						draggable={false}
+					/>
 				</div>
 				<p>
 					Drop your file here, or <span className="text-main-blue">browse</span>

@@ -13,7 +13,7 @@ const limiter = rateLimit({
 
 const handler: NextApiHandler = async (req, res) => {
 	try {
-		await limiter.check(res, 3, process.env.token!); // 3 requests per secound
+		await limiter.check(res, 20, process.env.token!); // 20 requests per secound
 	} catch {
 		return res.status(429).json({ error: "Rate limit exceeded" });
 	}

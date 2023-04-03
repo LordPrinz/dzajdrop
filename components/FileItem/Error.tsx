@@ -1,5 +1,5 @@
 import FailIcon from "./FailIcon";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 export default ({ error }) => {
 	const [isVisible, setIsVisible] = useState(true);
 
@@ -22,7 +22,7 @@ export default ({ error }) => {
 							transitionDelay: "0.4s",
 						}}
 					>
-						{error ? error : "Error!"}
+						{typeof error === "string" ? error : "Error!"}
 					</div>
 				</div>
 
