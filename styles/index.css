@@ -43,11 +43,11 @@ body {
   }
 
   .file {
-    @apply p-5 py-3 text-main-darkerBlue border-[#eaeaea] border rounded-xl font-bold mt-2.5 overflow-hidden relative;
+    @apply p-5 py-3 text-main-darkerBlue border-[#eaeaea] border rounded-xl font-bold mt-2.5 overflow-hidden relative tablet:p-4 tablet:py-3;
   }
 
   .file2 {
-    @apply text-main-darkerBlue border-[#eaeaea] border rounded-xl font-bold mt-2.5 overflow-hidden relative;
+    @apply text-main-darkerBlue border-[#eaeaea] border rounded-xl font-bold mt-2.5 overflow-hidden relative  tablet:text-sm;
   }
 
   .fourohfour__container {
