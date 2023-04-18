@@ -23,7 +23,7 @@ body {
 
 @layer components {
   .upload-input {
-    @apply p-12 transition px-40 border-dashed border-2 rounded-2xl border-main-grey text-main-darkerBlue font-bold w-full flex flex-col justify-center items-center cursor-pointer;
+    @apply p-12 transition px-40 border-dashed border-2 rounded-2xl border-main-grey text-main-darkerBlue font-bold w-full flex flex-col justify-center items-center cursor-pointer tablet:p-6 tablet:m-1 tablet:px-16 tablet:text-sm;
   }
 
   .upload-container {
@@ -35,7 +35,7 @@ body {
   }
 
   .upload__icon-container {
-    @apply w-28 mb-6 transition;
+    @apply w-28 mb-6 transition tablet:w-20 tablet:mb-3;
   }
 
   .file-uploader-cleaner {
@@ -74,14 +74,14 @@ body {
   }
 
   .notification-icon {
-    @apply transition hover:text-[#475569] hover:transition absolute right-5 top-1/2 -translate-y-1/2 z-10;
+    @apply transition hover:text-[#475569] hover:transition absolute right-5 top-1/2 -translate-y-1/2 z-10 text-2xl tablet:text-base;
   }
 
   .notification-link {
     @apply w-full overflow-hidden;
   }
   .notification {
-    @apply flex items-center justify-between pr-5 h-full relative w-full py-5 px-5;
+    @apply flex items-center justify-between pr-5 h-full relative w-full py-5 px-5 tablet:text-xs tablet:px-3 tablet:pr-3 tablet:py-3;
   }
 }
 
@@ -96,4 +96,28 @@ body {
   border-top-right-radius: 9999px;
   border-bottom-right-radius: 9999px;
   background: #f8f8f8;
+}
+
+@media screen and (max-width: 650px) {
+  .upload-input > p {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .upload-input > p {
+    font-size: 10px;
+    text-align: center;
+  }
+
+  .upload__icon-container {
+    width: 60px;
+  }
+  .upload-container {
+    gap: 0;
+    padding: 20px;
+  }
+  .upload-input {
+    transform: translateX(-4px);
+  }
 }
