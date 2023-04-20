@@ -63,7 +63,7 @@ body {
   }
 
   .file-container {
-    @apply bg-[#f8f8f8] rounded-r-full pl-8  rounded-l-full inline-flex shadow-sm shadow-main-grey select-none  items-center;
+    @apply bg-[#f8f8f8] rounded-r-full pl-8  rounded-l-full inline-flex shadow-sm shadow-main-grey select-none  items-center tablet:flex-col;
   }
 
   .file-icon {
@@ -96,6 +96,12 @@ body {
   border-top-right-radius: 9999px;
   border-bottom-right-radius: 9999px;
   background: #f8f8f8;
+}
+
+@media screen and (max-width: 650px) {
+  .download-button::after {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 650px) {

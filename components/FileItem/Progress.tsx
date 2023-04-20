@@ -51,7 +51,7 @@ export default ({
           transform: `translateX(${progress}%)`,
         }}
       ></div>
-      <div className="flex justify-between items-center relative overflow-hidden pb-3">
+      <div className="flex justify-between items-center relative overflow-hidden pb-3 tablet:text-xs">
         <div>
           <div
             className="text-sm mb-1 font-bold tablet:text-xs"
